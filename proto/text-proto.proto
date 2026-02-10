@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package example;
+
+option go_package = "github.com/your-org/contracts/go/example;example";
+
+message TextMessage {
+    string text = 1;
+}
+
+service TextService {
+    rpc SendText(TextMessage) returns (TextMessage);
+}
