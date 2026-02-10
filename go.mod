@@ -1,4 +1,4 @@
-module github.com/andre/contracts
+module github.com/AndreyLebedev1998/proto-go
 
 go 1.24.1
 
