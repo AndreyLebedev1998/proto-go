@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package example;
-
+е
 option go_package = "github.com/your-org/contracts/go/example;example";
 
 message TextMessage {
