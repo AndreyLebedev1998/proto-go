@@ -1,13 +1,26 @@
 syntax = "proto3";
 
 package example;
-е
+
 option go_package = "github.com/your-org/contracts/go/example;example";
 
 message TextMessage {
     string text = 1;
 }
+message UserId {
+    int64 userId = 1;
+}
+
+message UserMessage {
+    string name = 1;
+    string lastName = 2;
+    int64 userId = 3;
+}
 
 service TextService {
     rpc SendText(TextMessage) returns (TextMessage);
+}
+
+service FindUserService {
+    rpc FindService(UserId) returns (UserMessage);
 }

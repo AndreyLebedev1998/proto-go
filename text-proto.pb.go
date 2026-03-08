@@ -65,15 +65,127 @@ func (x *TextMessage) GetText() string {
 	return ""
 }
 
+type UserId struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserId) Reset() {
+	*x = UserId{}
+	mi := &file_text_proto_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserId) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserId) ProtoMessage() {}
+
+func (x *UserId) ProtoReflect() protoreflect.Message {
+	mi := &file_text_proto_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserId.ProtoReflect.Descriptor instead.
+func (*UserId) Descriptor() ([]byte, []int) {
+	return file_text_proto_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *UserId) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type UserMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	LastName      string                 `protobuf:"bytes,2,opt,name=lastName,proto3" json:"lastName,omitempty"`
+	UserId        int64                  `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserMessage) Reset() {
+	*x = UserMessage{}
+	mi := &file_text_proto_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserMessage) ProtoMessage() {}
+
+func (x *UserMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_text_proto_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserMessage.ProtoReflect.Descriptor instead.
+func (*UserMessage) Descriptor() ([]byte, []int) {
+	return file_text_proto_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *UserMessage) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UserMessage) GetLastName() string {
+	if x != nil {
+		return x.LastName
+	}
+	return ""
+}
+
+func (x *UserMessage) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
 var File_text_proto_proto protoreflect.FileDescriptor
 
 const file_text_proto_proto_rawDesc = "" +
 	"\n" +
 	"\x10text-proto.proto\x12\aexample\"!\n" +
 	"\vTextMessage\x12\x12\n" +
-	"\x04text\x18\x01 \x01(\tR\x04text2E\n" +
+	"\x04text\x18\x01 \x01(\tR\x04text\" \n" +
+	"\x06UserId\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\x03R\x06userId\"U\n" +
+	"\vUserMessage\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1a\n" +
+	"\blastName\x18\x02 \x01(\tR\blastName\x12\x16\n" +
+	"\x06userId\x18\x03 \x01(\x03R\x06userId2E\n" +
 	"\vTextService\x126\n" +
-	"\bSendText\x12\x14.example.TextMessage\x1a\x14.example.TextMessageB2Z0github.com/your-org/contracts/go/example;exampleb\x06proto3"
+	"\bSendText\x12\x14.example.TextMessage\x1a\x14.example.TextMessage2G\n" +
+	"\x0fFindUserService\x124\n" +
+	"\vFindService\x12\x0f.example.UserId\x1a\x14.example.UserMessageB2Z0github.com/your-org/contracts/go/example;exampleb\x06proto3"
 
 var (
 	file_text_proto_proto_rawDescOnce sync.Once
@@ -87,15 +199,19 @@ func file_text_proto_proto_rawDescGZIP() []byte {
 	return file_text_proto_proto_rawDescData
 }
 
-var file_text_proto_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_text_proto_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_text_proto_proto_goTypes = []any{
 	(*TextMessage)(nil), // 0: example.TextMessage
+	(*UserId)(nil),      // 1: example.UserId
+	(*UserMessage)(nil), // 2: example.UserMessage
 }
 var file_text_proto_proto_depIdxs = []int32{
 	0, // 0: example.TextService.SendText:input_type -> example.TextMessage
-	0, // 1: example.TextService.SendText:output_type -> example.TextMessage
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: example.FindUserService.FindService:input_type -> example.UserId
+	0, // 2: example.TextService.SendText:output_type -> example.TextMessage
+	2, // 3: example.FindUserService.FindService:output_type -> example.UserMessage
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -112,9 +228,9 @@ func file_text_proto_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_text_proto_proto_rawDesc), len(file_text_proto_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   3,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
 		GoTypes:           file_text_proto_proto_goTypes,
 		DependencyIndexes: file_text_proto_proto_depIdxs,

@@ -119,3 +119,105 @@ var TextService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "text-proto.proto",
 }
+
+const (
+	FindUserService_FindService_FullMethodName = "/example.FindUserService/FindService"
+)
+
+// FindUserServiceClient is the client API for FindUserService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type FindUserServiceClient interface {
+	FindService(ctx context.Context, in *UserId, opts ...grpc.CallOption) (*UserMessage, error)
+}
+
+type findUserServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewFindUserServiceClient(cc grpc.ClientConnInterface) FindUserServiceClient {
+	return &findUserServiceClient{cc}
+}
+
+func (c *findUserServiceClient) FindService(ctx context.Context, in *UserId, opts ...grpc.CallOption) (*UserMessage, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserMessage)
+	err := c.cc.Invoke(ctx, FindUserService_FindService_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// FindUserServiceServer is the server API for FindUserService service.
+// All implementations must embed UnimplementedFindUserServiceServer
+// for forward compatibility.
+type FindUserServiceServer interface {
+	FindService(context.Context, *UserId) (*UserMessage, error)
+	mustEmbedUnimplementedFindUserServiceServer()
+}
+
+// UnimplementedFindUserServiceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedFindUserServiceServer struct{}
+
+func (UnimplementedFindUserServiceServer) FindService(context.Context, *UserId) (*UserMessage, error) {
+	return nil, status.Error(codes.Unimplemented, "method FindService not implemented")
+}
+func (UnimplementedFindUserServiceServer) mustEmbedUnimplementedFindUserServiceServer() {}
+func (UnimplementedFindUserServiceServer) testEmbeddedByValue()                         {}
+
+// UnsafeFindUserServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FindUserServiceServer will
+// result in compilation errors.
+type UnsafeFindUserServiceServer interface {
+	mustEmbedUnimplementedFindUserServiceServer()
+}
+
+func RegisterFindUserServiceServer(s grpc.ServiceRegistrar, srv FindUserServiceServer) {
+	// If the following call panics, it indicates UnimplementedFindUserServiceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&FindUserService_ServiceDesc, srv)
+}
+
+func _FindUserService_FindService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FindUserServiceServer).FindService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FindUserService_FindService_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FindUserServiceServer).FindService(ctx, req.(*UserId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// FindUserService_ServiceDesc is the grpc.ServiceDesc for FindUserService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var FindUserService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "example.FindUserService",
+	HandlerType: (*FindUserServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "FindService",
+			Handler:    _FindUserService_FindService_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "text-proto.proto",
+}
