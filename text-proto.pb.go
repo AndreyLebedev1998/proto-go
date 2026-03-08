@@ -113,7 +113,8 @@ type UserMessage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	LastName      string                 `protobuf:"bytes,2,opt,name=lastName,proto3" json:"lastName,omitempty"`
-	UserId        int64                  `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	Age           int64                  `protobuf:"varint,3,opt,name=Age,proto3" json:"Age,omitempty"`
+	UserId        int64                  `protobuf:"varint,4,opt,name=userId,proto3" json:"userId,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -162,6 +163,13 @@ func (x *UserMessage) GetLastName() string {
 	return ""
 }
 
+func (x *UserMessage) GetAge() int64 {
+	if x != nil {
+		return x.Age
+	}
+	return 0
+}
+
 func (x *UserMessage) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
@@ -177,11 +185,12 @@ const file_text_proto_proto_rawDesc = "" +
 	"\vTextMessage\x12\x12\n" +
 	"\x04text\x18\x01 \x01(\tR\x04text\" \n" +
 	"\x06UserId\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\x03R\x06userId\"U\n" +
+	"\x06userId\x18\x01 \x01(\x03R\x06userId\"g\n" +
 	"\vUserMessage\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1a\n" +
-	"\blastName\x18\x02 \x01(\tR\blastName\x12\x16\n" +
-	"\x06userId\x18\x03 \x01(\x03R\x06userId2E\n" +
+	"\blastName\x18\x02 \x01(\tR\blastName\x12\x10\n" +
+	"\x03Age\x18\x03 \x01(\x03R\x03Age\x12\x16\n" +
+	"\x06userId\x18\x04 \x01(\x03R\x06userId2E\n" +
 	"\vTextService\x126\n" +
 	"\bSendText\x12\x14.example.TextMessage\x1a\x14.example.TextMessage2D\n" +
 	"\x0fFindUserService\x121\n" +

@@ -14,7 +14,8 @@ message UserId {
 message UserMessage {
     string name = 1;
     string lastName = 2;
-    int64 userId = 3;
+    int64 Age = 3;
+    int64 userId = 4;
 }
 
 service TextService {
