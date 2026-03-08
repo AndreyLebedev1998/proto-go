@@ -22,5 +22,5 @@ service TextService {
 }
 
 service FindUserService {
-    rpc FindService(UserId) returns (UserMessage);
+    rpc FindUser(UserId) returns (UserMessage);
 }
