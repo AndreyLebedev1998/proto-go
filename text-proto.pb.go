@@ -183,9 +183,9 @@ const file_text_proto_proto_rawDesc = "" +
 	"\blastName\x18\x02 \x01(\tR\blastName\x12\x16\n" +
 	"\x06userId\x18\x03 \x01(\x03R\x06userId2E\n" +
 	"\vTextService\x126\n" +
-	"\bSendText\x12\x14.example.TextMessage\x1a\x14.example.TextMessage2G\n" +
-	"\x0fFindUserService\x124\n" +
-	"\vFindService\x12\x0f.example.UserId\x1a\x14.example.UserMessageB2Z0github.com/your-org/contracts/go/example;exampleb\x06proto3"
+	"\bSendText\x12\x14.example.TextMessage\x1a\x14.example.TextMessage2D\n" +
+	"\x0fFindUserService\x121\n" +
+	"\bFindUser\x12\x0f.example.UserId\x1a\x14.example.UserMessageB2Z0github.com/your-org/contracts/go/example;exampleb\x06proto3"
 
 var (
 	file_text_proto_proto_rawDescOnce sync.Once
@@ -207,9 +207,9 @@ var file_text_proto_proto_goTypes = []any{
 }
 var file_text_proto_proto_depIdxs = []int32{
 	0, // 0: example.TextService.SendText:input_type -> example.TextMessage
-	1, // 1: example.FindUserService.FindService:input_type -> example.UserId
+	1, // 1: example.FindUserService.FindUser:input_type -> example.UserId
 	0, // 2: example.TextService.SendText:output_type -> example.TextMessage
-	2, // 3: example.FindUserService.FindService:output_type -> example.UserMessage
+	2, // 3: example.FindUserService.FindUser:output_type -> example.UserMessage
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

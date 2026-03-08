@@ -121,14 +121,14 @@ var TextService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	FindUserService_FindService_FullMethodName = "/example.FindUserService/FindService"
+	FindUserService_FindUser_FullMethodName = "/example.FindUserService/FindUser"
 )
 
 // FindUserServiceClient is the client API for FindUserService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FindUserServiceClient interface {
-	FindService(ctx context.Context, in *UserId, opts ...grpc.CallOption) (*UserMessage, error)
+	FindUser(ctx context.Context, in *UserId, opts ...grpc.CallOption) (*UserMessage, error)
 }
 
 type findUserServiceClient struct {
@@ -139,10 +139,10 @@ func NewFindUserServiceClient(cc grpc.ClientConnInterface) FindUserServiceClient
 	return &findUserServiceClient{cc}
 }
 
-func (c *findUserServiceClient) FindService(ctx context.Context, in *UserId, opts ...grpc.CallOption) (*UserMessage, error) {
+func (c *findUserServiceClient) FindUser(ctx context.Context, in *UserId, opts ...grpc.CallOption) (*UserMessage, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserMessage)
-	err := c.cc.Invoke(ctx, FindUserService_FindService_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, FindUserService_FindUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -153,7 +153,7 @@ func (c *findUserServiceClient) FindService(ctx context.Context, in *UserId, opt
 // All implementations must embed UnimplementedFindUserServiceServer
 // for forward compatibility.
 type FindUserServiceServer interface {
-	FindService(context.Context, *UserId) (*UserMessage, error)
+	FindUser(context.Context, *UserId) (*UserMessage, error)
 	mustEmbedUnimplementedFindUserServiceServer()
 }
 
@@ -164,8 +164,8 @@ type FindUserServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedFindUserServiceServer struct{}
 
-func (UnimplementedFindUserServiceServer) FindService(context.Context, *UserId) (*UserMessage, error) {
-	return nil, status.Error(codes.Unimplemented, "method FindService not implemented")
+func (UnimplementedFindUserServiceServer) FindUser(context.Context, *UserId) (*UserMessage, error) {
+	return nil, status.Error(codes.Unimplemented, "method FindUser not implemented")
 }
 func (UnimplementedFindUserServiceServer) mustEmbedUnimplementedFindUserServiceServer() {}
 func (UnimplementedFindUserServiceServer) testEmbeddedByValue()                         {}
@@ -188,20 +188,20 @@ func RegisterFindUserServiceServer(s grpc.ServiceRegistrar, srv FindUserServiceS
 	s.RegisterService(&FindUserService_ServiceDesc, srv)
 }
 
-func _FindUserService_FindService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FindUserService_FindUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FindUserServiceServer).FindService(ctx, in)
+		return srv.(FindUserServiceServer).FindUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FindUserService_FindService_FullMethodName,
+		FullMethod: FindUserService_FindUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FindUserServiceServer).FindService(ctx, req.(*UserId))
+		return srv.(FindUserServiceServer).FindUser(ctx, req.(*UserId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -214,8 +214,8 @@ var FindUserService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*FindUserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "FindService",
-			Handler:    _FindUserService_FindService_Handler,
+			MethodName: "FindUser",
+			Handler:    _FindUserService_FindUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
